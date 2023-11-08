@@ -57,18 +57,13 @@ require("main.telescope")
 
 require("telescope").setup {
 	pickers = {
-		find_files = {
-			initial_mode = "normal"
-		},
-		git_files = {
-			initial_mode = "normal"
-		},
-		grep_string = {
-			initial_mode = "normal"
-		},
-		live_grep = {
-			initial_mode = "insert"
-		},
+		find_files = { initial_mode = "normal" },
+		git_files = { initial_mode = "normal" },
+		grep_string = { initial_mode = "normal" },
+		live_grep = { initial_mode = "insert" },
+		lsp_definitions = { initial_mode = "normal" },
+		lsp_implementations = { initial_mode = "normal" },
+		lsp_type_definitions = { initial_mode = "normal" },
 	}
 }
 
