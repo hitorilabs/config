@@ -124,6 +124,7 @@ local servers = {
     clangd = {},
     rust_analyzer = {},
     cmake = {},
+    pyright = {},
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
