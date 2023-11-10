@@ -50,10 +50,9 @@ local plugins = {
 	},
 }
 
-require("lazy").setup(plugins, opts)
+require("lazy").setup(plugins, {})
 
 require("main.remap")
-require("main.telescope")
 
 require("telescope").setup {
 	pickers = {
@@ -62,6 +61,7 @@ require("telescope").setup {
 		grep_string = { initial_mode = "normal" },
 		live_grep = { initial_mode = "insert" },
 		lsp_definitions = { initial_mode = "normal" },
+		lsp_references = { initial_mode = "normal" },
 		lsp_implementations = { initial_mode = "normal" },
 		lsp_type_definitions = { initial_mode = "normal" },
 	}
