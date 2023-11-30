@@ -139,7 +139,17 @@ local servers = {
     clangd = {},
     rust_analyzer = {},
     cmake = {},
-    pyright = {},
+    pyright = {
+        python = {
+            analysis = {
+                useLibraryCodeForTypes = true,
+                autoImportCompletion = true,
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                typeCheckingMode = 'basic',
+            }
+        }
+    },
     lua_ls = {
         Lua = {
             workspace = { checkThirdParty = false },
