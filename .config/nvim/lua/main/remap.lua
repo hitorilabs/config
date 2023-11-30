@@ -8,10 +8,33 @@ vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { desc = "[R]e[n]ame" })
 vim.keymap.set("n", "J", "j", { desc = "unmap bc conflict with tmux movement" })
 
 local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
+vim.keymap.set('n', '<leader>ff', function()
+	builtin.find_files({
+		previewer = true,
+		layout_strategy = 'horizontal',
+		layout_config = {
+			horizontal = {
+				mirror = false,
+				preview_width = 0.7,
+				width = 0.95,
+				height = 0.95,
+			},
+		},
+	})
+end, {})
 vim.keymap.set('n', '<leader>fh', function()
     builtin.find_files({
-        find_command = {"rg", "--files", "--hidden", "--glob", "!.git/*"}
+        find_command = {"rg", "--files", "--hidden", "--glob", "!.git/*"},
+		previewer = true,
+		layout_strategy = 'horizontal',
+		layout_config = {
+			horizontal = {
+				mirror = false,
+				preview_width = 0.7,
+				width = 0.95,
+				height = 0.95,
+			},
+		},
     })
 end, {})
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
