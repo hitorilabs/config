@@ -90,6 +90,7 @@ vim.opt.shiftwidth = 4
 
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'no'
+vim.wo.wrap = false
 
 -- [[ Configure LSP ]]
 --  This function gets run when an LSP connects to a particular buffer.
@@ -108,10 +109,23 @@ local on_attach = function(_, bufnr)
     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
   end
 
-  nmap('gd', require('telescope.builtin').lsp_definitions, '[G]oto [D]efinition')
-  nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-  nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
-  nmap('<leader>D', require('telescope.builtin').lsp_type_definitions, 'Type [D]efinition')
+  local builtin = require('telescope.builtin')
+  nmap('gd', builtin.lsp_definitions, '[G]oto [D]efinition')
+  nmap('gr', function() builtin.lsp_references({
+      previewer = true,
+      layout_strategy = 'horizontal',
+      layout_config = {
+          horizontal = {
+              mirror = false,
+              preview_width = 0.7,
+              width = 0.95,
+              height = 0.95,
+          },
+      },
+  })
+  end, '[G]oto [R]eferences')
+  nmap('gI', builtin.lsp_implementations, '[G]oto [I]mplementation')
+  nmap('<leader>D', builtin.lsp_type_definitions, 'Type [D]efinition')
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
@@ -136,7 +150,10 @@ require('mason-lspconfig').setup()
 --  If you want to override the default filetypes that your language server will attach to you can
 --  define the property 'filetypes' to the map in question.
 local servers = {
-    clangd = {},
+    clangd = {
+        cmd = { "clangd", "--cuda-path=/usr/local/cuda/include", "--cuda-gpu-arch=sm_80" },
+        filetypes = { "c", "cpp", "cuda" },
+    },
     rust_analyzer = {},
     cmake = {},
     pyright = {
