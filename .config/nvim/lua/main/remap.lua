@@ -24,8 +24,11 @@ vim.keymap.set('n', '<leader>ff', function()
 end, {})
 vim.keymap.set('n', '<leader>fh', function()
     builtin.find_files({
-        find_command = {"rg", "--files", "--hidden", "--glob", "!.git/*"},
-		previewer = true,
+        find_command = {"rg", "--files", "--hidden", "--glob", "!.git/*", "--glob", "!__pycache__"},
+        hidden=true,
+        follow=true,
+        no_ignore=true,
+        previewer = true,
 		layout_strategy = 'horizontal',
 		layout_config = {
 			horizontal = {

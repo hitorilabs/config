@@ -163,7 +163,7 @@ local servers = {
                 autoImportCompletion = true,
                 autoSearchPaths = true,
                 diagnosticMode = 'openFilesOnly',
-                typeCheckingMode = 'basic',
+                typeCheckingMode = 'off',
             }
         }
     },
