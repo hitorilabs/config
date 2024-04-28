@@ -106,22 +106,4 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-export PYENV_ROOT="$HOME/.pyenv"
-command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init -)"
 
-export PATH=/usr/local/cuda-12.2/bin${PATH:+:${PATH}}
-export LD_LIBRARY_PATH=${LD_LIBRAR_PATH}:/usr/local/cuda-12.2/lib64
-. "$HOME/.cargo/env"
-
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-alias vim="nvim"
-
-# CC=/usr/bin/clang
-# CXX=/usr/bin/clang++
-CUDA_INSTALL_PATH=/usr/local/cuda-12.2
-CUDACXX=${CUDA_INSTALL_PATH}/bin/nvcc
-export CC=/usr/bin/clang
